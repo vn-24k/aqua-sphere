@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-abyss: #020915;
+    --cyan-glow: #00f5d4;
+    --magenta-glow: #e61c78;
+    --ocean-deep: #051329;
+    --gold-glow: #f59e0b;
+  }
+
+  body {
+    background-color: #020915;
+    color: #e2f1fc;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Cinzel', serif;
+  }
+
+  .font-modern {
+    font-family: 'Syne', sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #020915;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 245, 212, 0.25);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 245, 212, 0.5);
+}
+
+/* Water caustics & god rays */
+@keyframes godRayDrift {
+  0%, 100% {
+    transform: rotate(-15deg) translateY(-2%) scaleX(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: rotate(-12deg) translateY(2%) scaleX(1.15);
+    opacity: 0.55;
+  }
+}
+
+.god-ray-ray {
+  animation: godRayDrift 12s ease-in-out infinite;
+}
+
+/* Subaquatic subtle pulse */
+@keyframes biolumPulse {
+  0%, 100% {
+    opacity: 0.4;
+    filter: drop-shadow(0 0 12px rgba(230, 28, 120, 0.4));
+  }
+  50% {
+    opacity: 0.8;
+    filter: drop-shadow(0 0 26px rgba(230, 28, 120, 0.85));
+  }
+}
+
+.biolum-pulse {
+  animation: biolumPulse 6s ease-in-out infinite;
+}
+
+@keyframes cyanBiolumPulse {
+  0%, 100% {
+    opacity: 0.35;
+    filter: drop-shadow(0 0 10px rgba(0, 245, 212, 0.35));
+  }
+  50% {
+    opacity: 0.75;
+    filter: drop-shadow(0 0 22px rgba(0, 245, 212, 0.75));
+  }
+}
+
+.cyan-pulse {
+  animation: cyanBiolumPulse 5s ease-in-out infinite;
+}
