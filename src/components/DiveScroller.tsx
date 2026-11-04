@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Compass, Waves, Gauge, Thermometer, ShieldAlert } from "lucide-react";
+import { Compass, Waves, Gauge, Thermometer, ChevronRight, ChevronLeft } from "lucide-react";
 import { oceanAudio } from "../utils/ocean-audio";
 
 interface DiveScrollerProps {
@@ -8,6 +8,7 @@ interface DiveScrollerProps {
 
 export const DiveTelemetryHud: React.FC<DiveScrollerProps> = ({ depthUnit }) => {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,94 +22,79 @@ export const DiveTelemetryHud: React.FC<DiveScrollerProps> = ({ depthUnit }) => 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Depth calculation: 0m to 140m (Technical Trimix depth)
   const depthMeters = Math.round(scrollProgress * 140);
   const depthValue = depthUnit === "meters" ? depthMeters : Math.round(depthMeters * 3.28084);
   const unitLabel = depthUnit === "meters" ? "M" : "FT";
-
-  // Temperature drops from 27°C at surface to 4°C at 140m
   const tempCelsius = (27.4 - scrollProgress * 23.2).toFixed(1);
-
-  // Pressure: 1 atm at surface + 1 atm per 10m
   const pressureBar = (1.0 + depthMeters / 10).toFixed(1);
 
-  // Current Oceanic Zone Name
   const getZone = (depth: number) => {
-    if (depth < 20) return "ZONA EPILÉGICA (LUZ SOLAR)";
-    if (depth < 60) return "ZONA MESOPELÁGICA (CREPÚSCULO)";
-    if (depth < 100) return "ZONA BATIAL SUPERIOR";
-    return "ZONA ABISSAL PROFUNDA";
+    if (depth < 20) return "EPIPELÁGICA";
+    if (depth < 60) return "MESOPELÁGICA";
+    if (depth < 100) return "BATIAL";
+    return "ABISSAL";
   };
 
   return (
-    <aside aria-label="Telemetria de Mergulho" className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col items-end gap-3 pointer-events-auto">
-      {/* HUD Container */}
-      <div 
-        onMouseEnter={() => oceanAudio.playBubblePop()}
-        className="backdrop-blur-xl bg-[#030e1d]/85 border border-[#00f5d4]/25 p-4 rounded-2xl shadow-[0_0_35px_rgba(0,245,212,0.12)] flex flex-col gap-3.5 w-52 transition-all duration-300 hover:border-[#00f5d4]/50"
-      >
-        <div className="flex items-center justify-between border-b border-white/10 pb-2">
-          <div className="flex items-center gap-1.5 text-xs text-[#00f5d4] font-mono tracking-wider">
-            <Gauge className="w-3.5 h-3.5 animate-pulse text-[#00f5d4]" />
-            <span>TELEMETRIA HUD</span>
+    <aside aria-label="Telemetria de Mergulho" className="fixed right-4 bottom-24 z-40 hidden lg:flex flex-col items-end pointer-events-auto">
+      {isCollapsed ? (
+        <button
+          onClick={() => {
+            oceanAudio.playBubblePop();
+            setIsCollapsed(false);
+          }}
+          className="p-2.5 rounded-full bg-[#030e1d]/90 border border-[#00f5d4]/40 text-[#00f5d4] hover:text-white shadow-lg backdrop-blur-md flex items-center gap-1.5 text-xs font-mono"
+          title="Expandir Telemetria HUD"
+        >
+          <Gauge className="w-4 h-4 animate-pulse" />
+          <span>{depthValue}{unitLabel}</span>
+          <ChevronLeft className="w-3.5 h-3.5" />
+        </button>
+      ) : (
+        <div 
+          onMouseEnter={() => oceanAudio.playBubblePop()}
+          className="backdrop-blur-xl bg-[#030e1d]/95 border border-[#00f5d4]/30 p-3.5 rounded-2xl shadow-[0_0_35px_rgba(0,245,212,0.15)] flex flex-col gap-2.5 w-44 transition-all duration-300 hover:border-[#00f5d4]/60"
+        >
+          <div className="flex items-center justify-between border-b border-white/10 pb-1.5">
+            <div className="flex items-center gap-1 text-[11px] text-[#00f5d4] font-mono tracking-wider">
+              <Gauge className="w-3.5 h-3.5 animate-pulse text-[#00f5d4]" />
+              <span>HUD PROFUNDIDADE</span>
+            </div>
+            <button
+              onClick={() => setIsCollapsed(true)}
+              className="text-neutral-400 hover:text-white text-xs"
+              title="Recolher HUD"
+            >
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
           </div>
-          <span className="w-2 h-2 rounded-full bg-[#00f5d4] shadow-[0_0_8px_#00f5d4]" />
-        </div>
 
-        {/* Depth Reading */}
-        <div className="flex flex-col">
-          <span className="text-[10px] text-neutral-400 uppercase tracking-widest font-mono">Profundidade</span>
-          <div className="flex items-baseline gap-1">
-            <span className="text-3xl font-display font-bold text-white tracking-tight">
-              {depthValue}
+          <div className="flex items-baseline justify-between">
+            <span className="text-2xl font-display font-bold text-white tracking-tight">
+              {depthValue} <span className="text-xs font-mono text-[#00f5d4]">{unitLabel}</span>
             </span>
-            <span className="text-xs font-mono font-semibold text-[#00f5d4]">{unitLabel}</span>
+            <span className="text-[10px] font-mono text-neutral-400 uppercase">{getZone(depthMeters)}</span>
           </div>
-          {/* Depth progress bar */}
-          <div className="w-full bg-white/10 h-1.5 rounded-full mt-1.5 overflow-hidden">
+
+          <div className="w-full bg-white/10 h-1 rounded-full overflow-hidden">
             <div 
-              className="h-full bg-gradient-to-r from-[#00f5d4] via-[#3a86ff] to-[#e61c78] transition-all duration-150"
-              style={{ width: `${Math.max(scrollProgress * 100, 4)}%` }}
+              className="h-full bg-gradient-to-r from-[#00f5d4] via-[#3a86ff] to-[#e61c78]"
+              style={{ width: `${Math.max(scrollProgress * 100, 5)}%` }}
             />
           </div>
-        </div>
 
-        {/* Ocean Zone */}
-        <div className="flex flex-col">
-          <span className="text-[9px] text-neutral-400 uppercase tracking-wider font-mono">Camada Oceânica</span>
-          <span className="text-[11px] font-semibold text-[#e2f1fc] font-sans tracking-wide">
-            {getZone(depthMeters)}
-          </span>
-        </div>
-
-        {/* Atmosphere & Temp */}
-        <div className="grid grid-cols-2 gap-2 pt-2 border-t border-white/10">
-          <div className="flex flex-col">
-            <div className="flex items-center gap-1 text-[9px] text-neutral-400 font-mono">
-              <Compass className="w-3 h-3 text-[#3a86ff]" />
-              <span>PRESSÃO</span>
+          <div className="grid grid-cols-2 gap-2 text-[10px] font-mono pt-1 border-t border-white/10">
+            <div>
+              <span className="text-neutral-400 block">PRESSÃO:</span>
+              <strong className="text-white">{pressureBar} BAR</strong>
             </div>
-            <span className="text-xs font-mono font-bold text-white">{pressureBar} BAR</span>
-          </div>
-
-          <div className="flex flex-col">
-            <div className="flex items-center gap-1 text-[9px] text-neutral-400 font-mono">
-              <Thermometer className="w-3 h-3 text-[#f59e0b]" />
-              <span>TEMP.</span>
+            <div>
+              <span className="text-neutral-400 block">TEMP:</span>
+              <strong className="text-white">{tempCelsius} °C</strong>
             </div>
-            <span className="text-xs font-mono font-bold text-white">{tempCelsius} °C</span>
           </div>
         </div>
-
-        {/* Deco status */}
-        <div className="flex items-center justify-between text-[10px] font-mono text-emerald-400 bg-emerald-950/40 px-2 py-1 rounded-md border border-emerald-500/30">
-          <span className="flex items-center gap-1">
-            <Waves className="w-3 h-3" />
-            NDL (TEMPO SEGURO)
-          </span>
-          <span className="font-bold">∞ MIN</span>
-        </div>
-      </div>
+      )}
     </aside>
   );
 };
