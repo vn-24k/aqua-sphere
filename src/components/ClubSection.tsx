@@ -1,44 +1,37 @@
 import React from "react";
-import { Shield, Award, Users, Anchor, CheckCircle2 } from "lucide-react";
+import { Shield, CheckCircle2, Award, Sparkles } from "lucide-react";
 import { oceanAudio } from "../utils/ocean-audio";
-import {
-  UivBiolumMarineCard,
-  UivBubblePhysicsSwitch,
-  UivCoralTooltip,
-  UivNitroxGearCheckbox,
-  UivAbyssalGlassBtn,
-} from "./uiverse-collection";
 
 export const ClubSection: React.FC = () => {
   return (
     <section id="sobre" className="relative py-28 px-4 sm:px-8 max-w-7xl mx-auto z-10">
-      {/* Subtle background glow */}
+      {/* Background ambient lighting */}
       <div 
-        className="absolute -left-20 top-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-[140px] pointer-events-none opacity-40"
+        className="absolute -left-20 top-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-[150px] pointer-events-none opacity-30"
         style={{ background: "#00f5d4" }}
       />
       <div 
-        className="absolute -right-20 top-2/3 -translate-y-1/2 w-96 h-96 rounded-full blur-[140px] pointer-events-none opacity-30"
+        className="absolute -right-20 top-2/3 -translate-y-1/2 w-96 h-96 rounded-full blur-[150px] pointer-events-none opacity-25"
         style={{ background: "#e61c78" }}
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-        {/* Left Column: Exotic Winged Marine Fish (Exact from 1:1 Reference) */}
+        {/* Left Column: Exotic Winged Marine Fish (Exact from Reference Artwork) */}
         <div className="lg:col-span-5 relative flex items-center justify-center">
-          <div className="relative group">
+          <div className="relative group w-full max-w-md">
             {/* Ambient water halo */}
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-[#00f5d4]/20 via-transparent to-[#e61c78]/25 filter blur-2xl group-hover:blur-3xl transition-all duration-500" />
             
             {/* Cropped Fish Asset from Reference */}
-            <div className="relative z-10 rounded-2xl overflow-hidden border border-white/10 bg-[#020b18]/70 backdrop-blur-md p-3 shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+            <div className="relative z-10 rounded-3xl overflow-hidden border border-white/15 bg-[#020b18]/80 backdrop-blur-xl p-3 shadow-[0_25px_60px_rgba(0,0,0,0.9)]">
               <img
                 src="/assets/exotic-fish.jpg"
                 alt="Peixe Exótico Abissal - Aqua Sphere"
-                className="w-full h-auto max-h-[460px] object-cover rounded-xl transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-auto max-h-[460px] object-cover rounded-2xl transition-transform duration-700 group-hover:scale-105"
               />
               
-              {/* Fish Species Telemetry Badge */}
-              <div className="absolute bottom-6 left-6 right-6 p-3 rounded-xl bg-[#020915]/85 backdrop-blur-lg border border-white/15 flex items-center justify-between">
+              {/* Fish Specimen Telemetry Badge */}
+              <div className="absolute bottom-5 left-5 right-5 p-3 rounded-xl bg-[#020915]/90 backdrop-blur-md border border-white/15 flex items-center justify-between">
                 <div>
                   <div className="text-[10px] font-mono text-[#00f5d4] uppercase tracking-wider">
                     Espécime Catalogado #409
@@ -47,10 +40,7 @@ export const ClubSection: React.FC = () => {
                     Pterois Radiata (Bioluminescente)
                   </div>
                 </div>
-                {/* Uiverse Tooltip on the fish specimen */}
-                <div onMouseEnter={() => oceanAudio.playBubblePop()}>
-                  <UivCoralTooltip />
-                </div>
+                <span className="w-2.5 h-2.5 rounded-full bg-[#00f5d4] shadow-[0_0_10px_#00f5d4] animate-pulse" />
               </div>
             </div>
           </div>
@@ -73,20 +63,20 @@ export const ClubSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Editorial Paragraph (Preserving Russian reference text + Portuguese translation) */}
+          {/* Editorial Paragraph from Russian Reference */}
           <p className="text-base sm:text-lg text-neutral-300 leading-relaxed font-light mb-6">
             <strong className="text-white font-medium">Aqua Sphera</strong> — это профессиональный дайвинг-клуб, который уже более 10 лет помогает людям открывать красоту подводного мира. Мы предлагаем безопасное и комфортное обучение, уникальные экскурсии и все необходимое для погружений.
           </p>
 
           <p className="text-sm sm:text-base text-neutral-400 leading-relaxed mb-8">
-            Fundado por mestres de mergulho técnico e fotógrafos de profundidade, unimos a precisão militar de protocolos de descompressão com expedições silenciosas de puro deslumbramento em ecossistemas de corais e naufrágios virgens.
+            Fundado por mestres de mergulho técnico e fotógrafos de profundidade, unimos a precisão militar de protocolos de descompressão com expedições silenciosas em ecossistemas de corais e naufrágios virgens.
           </p>
 
-          {/* Highlights Grid with Uiverse Features */}
+          {/* Highlights Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mb-8">
             <div 
               onMouseEnter={() => oceanAudio.playBubblePop()}
-              className="p-4 rounded-xl border border-white/10 bg-[#030e1d]/60 backdrop-blur-sm hover:border-[#00f5d4]/40 transition-colors"
+              className="p-4 rounded-xl border border-white/10 bg-[#030e1d]/70 backdrop-blur-sm hover:border-[#00f5d4]/40 transition-colors"
             >
               <div className="flex items-center gap-2 mb-1.5 text-white font-medium text-sm">
                 <CheckCircle2 className="w-4 h-4 text-[#00f5d4]" />
@@ -99,7 +89,7 @@ export const ClubSection: React.FC = () => {
 
             <div 
               onMouseEnter={() => oceanAudio.playBubblePop()}
-              className="p-4 rounded-xl border border-white/10 bg-[#030e1d]/60 backdrop-blur-sm hover:border-[#e61c78]/40 transition-colors"
+              className="p-4 rounded-xl border border-white/10 bg-[#030e1d]/70 backdrop-blur-sm hover:border-[#e61c78]/40 transition-colors"
             >
               <div className="flex items-center gap-2 mb-1.5 text-white font-medium text-sm">
                 <Shield className="w-4 h-4 text-[#e61c78]" />
@@ -111,34 +101,10 @@ export const ClubSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Interactive Controls Bar with Uiverse Real Components */}
-          <div className="w-full p-4 rounded-2xl bg-[#041226]/80 border border-white/10 flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <span className="text-xs font-mono text-neutral-300">MODO BOLHA TÁTIL:</span>
-              <div onMouseEnter={() => oceanAudio.playBubblePop()}>
-                <UivBubblePhysicsSwitch />
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div onMouseEnter={() => oceanAudio.playBubblePop()}>
-                <UivNitroxGearCheckbox />
-              </div>
-              <span className="text-xs font-mono text-neutral-400">Nitrox 32% Homologado</span>
-            </div>
-
-            <div 
-              onClick={() => oceanAudio.playBubblePop()}
-              className="cursor-pointer"
-            >
-              <UivAbyssalGlassBtn />
-            </div>
-          </div>
-
-          {/* Bioluminescent Sea Anemone (Lower Right decoration matching reference) */}
-          <div className="self-end mt-6 flex items-center gap-2 text-xs font-mono text-[#e61c78] opacity-80">
+          {/* Bioluminescent Sea Anemone Status */}
+          <div className="flex items-center gap-2 text-xs font-mono text-[#e61c78]">
             <span className="w-2 h-2 rounded-full bg-[#e61c78] animate-ping" />
-            <span>Bioma Coralino: Heteractis Magnifica Ativa</span>
+            <span>Bioma Coralino: Heteractis Magnifica com Simbiose Ativa</span>
           </div>
         </div>
       </div>

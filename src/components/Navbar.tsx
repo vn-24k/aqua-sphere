@@ -1,7 +1,6 @@
 import React from "react";
-import { Volume2, VolumeX, Compass, Anchor } from "lucide-react";
+import { Volume2, VolumeX, Compass, Layers } from "lucide-react";
 import { oceanAudio } from "../utils/ocean-audio";
-import { UivSonarAudioToggle, UivDepthUnitsSwitch } from "./uiverse-collection";
 
 interface NavbarProps {
   onOpenBooking: () => void;
@@ -9,6 +8,8 @@ interface NavbarProps {
   onToggleDepthUnit: () => void;
   isAudioOn: boolean;
   onToggleAudio: () => void;
+  onToggleDrawer: () => void;
+  isDrawerOpen: boolean;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -17,11 +18,13 @@ export const Navbar: React.FC<NavbarProps> = ({
   onToggleDepthUnit,
   isAudioOn,
   onToggleAudio,
+  onToggleDrawer,
+  isDrawerOpen,
 }) => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-5 transition-all duration-300">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Brand Emblem (Geometric Dive Mask Emblem from 1:1 reference) */}
+        {/* Brand Emblem */}
         <a 
           href="#" 
           className="flex items-center gap-3 group focus:outline-none"
@@ -35,7 +38,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               stroke="currentColor" 
               strokeWidth="5"
             >
-              {/* Geometric diving helmet / manta ray visor */}
               <circle cx="50" cy="50" r="42" strokeDasharray="6 4" strokeOpacity="0.4" />
               <path d="M50 15 L30 35 L35 70 L50 85 L65 70 L70 35 Z" fill="rgba(0,245,212,0.15)" />
               <circle cx="50" cy="45" r="14" fill="rgba(230,28,120,0.3)" />
@@ -54,39 +56,39 @@ export const Navbar: React.FC<NavbarProps> = ({
         </a>
 
         {/* Center Navigation Pills (Exact aesthetic from 1:1 image) */}
-        <nav className="hidden md:flex items-center gap-2 bg-[#041226]/60 backdrop-blur-xl border border-white/10 px-3 py-1.5 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+        <nav className="hidden md:flex items-center gap-2 bg-[#041226]/70 backdrop-blur-xl border border-white/10 px-3 py-1.5 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
           <a
             href="#sobre"
             onMouseEnter={() => oceanAudio.playBubblePop()}
-            className="px-4 py-1.5 text-xs font-medium text-neutral-300 hover:text-white rounded-full hover:bg-white/10 transition-all"
+            className="px-4 py-1.5 text-xs font-medium text-neutral-300 hover:text-white rounded-full hover:bg-white/10 transition-all font-sans"
           >
             О клубе
           </a>
           <a
             href="#cursos"
             onMouseEnter={() => oceanAudio.playBubblePop()}
-            className="px-4 py-1.5 text-xs font-medium text-neutral-300 hover:text-white rounded-full hover:bg-white/10 transition-all"
+            className="px-4 py-1.5 text-xs font-medium text-neutral-300 hover:text-white rounded-full hover:bg-white/10 transition-all font-sans"
           >
             Курсы
           </a>
           <a
             href="#locais"
             onMouseEnter={() => oceanAudio.playBubblePop()}
-            className="px-4 py-1.5 text-xs font-medium text-neutral-300 hover:text-white rounded-full hover:bg-white/10 transition-all"
+            className="px-4 py-1.5 text-xs font-medium text-neutral-300 hover:text-white rounded-full hover:bg-white/10 transition-all font-sans"
           >
             Локации
           </a>
           <a
             href="#contato"
             onMouseEnter={() => oceanAudio.playBubblePop()}
-            className="px-4 py-1.5 text-xs font-medium text-neutral-300 hover:text-white rounded-full hover:bg-white/10 transition-all"
+            className="px-4 py-1.5 text-xs font-medium text-neutral-300 hover:text-white rounded-full hover:bg-white/10 transition-all font-sans"
           >
             Номер
           </a>
         </nav>
 
-        {/* Right Section: Audio + Depth Toggle + Radiant Magenta Pill CTA (Записаться) */}
-        <div className="flex items-center gap-3">
+        {/* Right Section: Audio + Depth Toggle + 23 Uiverse Drawer + Radiant Magenta Pill CTA */}
+        <div className="flex items-center gap-2 sm:gap-3">
           {/* Sonar Audio Button */}
           <button
             onClick={() => {
@@ -110,28 +112,40 @@ export const Navbar: React.FC<NavbarProps> = ({
               onToggleDepthUnit();
             }}
             title="Alternar Metros / Pés"
-            className="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#041226]/80 border border-white/15 text-[11px] font-mono font-medium text-neutral-300 hover:text-white transition-all"
+            className="hidden sm:flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-[#041226]/80 border border-white/15 text-[11px] font-mono font-medium text-neutral-300 hover:text-white transition-all"
           >
             <Compass className="w-3 h-3 text-[#00f5d4]" />
             <span>{depthUnit === "meters" ? "M" : "FT"}</span>
           </button>
 
-          {/* Radiant Magenta Action Button (1:1 with reference: "Записаться" / "Inscrever-se") */}
+          {/* 23 Uiverse Button */}
+          <button
+            onClick={() => {
+              oceanAudio.playBubblePop();
+              onToggleDrawer();
+            }}
+            className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#00f5d4]/10 hover:bg-[#00f5d4]/20 border border-[#00f5d4]/40 text-[#00f5d4] text-[11px] font-mono transition-all"
+            title="Abrir painel de 23 componentes Uiverse"
+          >
+            <Layers className="w-3.5 h-3.5" />
+            <span>23 UIVERSE</span>
+          </button>
+
+          {/* Radiant Magenta Action Button */}
           <button
             onClick={() => {
               oceanAudio.playBubblePop();
               onOpenBooking();
             }}
-            className="relative group overflow-hidden px-5 sm:px-6 py-2 rounded-full font-medium text-xs sm:text-sm text-white shadow-[0_0_25px_rgba(230,28,120,0.6)] hover:shadow-[0_0_35px_rgba(230,28,120,0.9)] transition-all duration-300 active:scale-95"
+            className="relative group overflow-hidden px-5 sm:px-6 py-2.5 rounded-full font-medium text-xs sm:text-sm text-white shadow-[0_0_25px_rgba(230,28,120,0.6)] hover:shadow-[0_0_35px_rgba(230,28,120,0.9)] transition-all duration-300 active:scale-95"
             style={{
               background: "linear-gradient(135deg, #f72585 0%, #b5179e 60%, #7209b7 100%)",
             }}
           >
-            <span className="relative z-10 flex items-center gap-2">
+            <span className="relative z-10 flex items-center gap-1.5">
               <span>Записаться</span>
               <span className="opacity-60 text-xs hidden sm:inline">/ Agendar</span>
             </span>
-            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
           </button>
         </div>
       </div>

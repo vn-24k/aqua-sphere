@@ -1,12 +1,6 @@
 import React from "react";
-import { GraduationCap, Award, Compass, Sparkles, Check, Clock, Users } from "lucide-react";
+import { GraduationCap, Award, Compass, Check, Clock } from "lucide-react";
 import { oceanAudio } from "../utils/ocean-audio";
-import {
-  UivNightDiveCheckbox,
-  UivDiverCertInput,
-  UivSeahorseNavPill,
-  UivBubbleAscentLoader,
-} from "./uiverse-collection";
 
 interface CoursesSectionProps {
   onSelectCourse: (courseName: string) => void;
@@ -19,12 +13,12 @@ const COURSES = [
     ruTitle: "Начальный курс дайвинга",
     hours: "32 Horas (Teoria + 6 Imersões)",
     maxDepth: "18 Metros",
-    desc: "A porta de entrada para o oceano. Domine controle de flutuabilidade, montagem de reguladores, respiração subaquática e sinais de segurança com acompanhamento 1:1 de instrutor sênior.",
+    desc: "A porta de entrada oficial para o oceano. Domine flutuabilidade, montagem de cilindros, respiração e procedimentos de emergência com instrutor 1:1.",
     features: [
       "Certificação Internacional PADI / SSI vitalícia",
-      "Equipamento completo de neoprene e cilindros incluso",
-      "Sessões em águas confinadas e oceano aberto",
-      "Manual digital interativo e registro de logbook",
+      "Equipamento de neoprene e cilindros incluso",
+      "Sessões em águas confinadas e mar aberto",
+      "Manual digital e logbook oficial",
     ],
     price: "R$ 1.950",
   },
@@ -34,11 +28,11 @@ const COURSES = [
     ruTitle: "Глубоководный курс (40м)",
     hours: "40 Horas (8 Imersões Técnicas)",
     maxDepth: "40 Metros",
-    desc: "Para mergulhadores certificados que buscam dominar navegação por bússola, gerenciamento de consumo de gás em profundidade, descompressão de segurança e exploração noturna.",
+    desc: "Navegação por bússola de precisão, gerenciamento de consumo em profundidade, descompressão e exploração noturna de recifes bioluminescentes.",
     features: [
-      "Especialidade em Naufrágios e Fendas Submersas",
-      "Protocolos de Mergulho Noturno Bioluminescente",
-      "Uso de computadores de mergulho de múltiplos gases",
+      "Mergulho Noturno Bioluminescente",
+      "Penetração básica em naufrágios",
+      "Uso de computadores de mergulho multi-gás",
       "Treinamento de flutuabilidade milimétrica",
     ],
     price: "R$ 2.680",
@@ -50,12 +44,12 @@ const COURSES = [
     ruTitle: "Технический тримикс и ребризер",
     hours: "60 Horas (Simulador + 10 Imersões)",
     maxDepth: "75 - 100 Metros",
-    desc: "O pináculo da exploração submarina. Mergulhe em circuitos fechados com rebreather sem fazer bolhas, respirando misturas de Hélio para total clareza mental e silêncio absoluto no abismo.",
+    desc: "Mergulhos em circuito fechado sem bolhas, com misturas de Hélio para total clareza mental e zero narcose nas profundezas do abismo.",
     features: [
-      "Análise laboratorial de misturas Trimix (O2/He/N2)",
-      "Troca de cilindros de stage sob descompressão",
-      "Zero perturbação da vida marinha (Rebreather silencioso)",
-      "Expedições arqueológicas e científicas exclusivas",
+      "Análise laboratorial de misturas Trimix",
+      "Troca de cilindros sob descompressão",
+      "Circuito fechado sem bolhas (silêncio total)",
+      "Acesso a expedições científicas exclusivas",
     ],
     price: "R$ 5.800",
   },
@@ -74,14 +68,6 @@ export const CoursesSection: React.FC<CoursesSectionProps> = ({ onSelectCourse }
         <p className="text-sm sm:text-base text-neutral-300 font-light max-w-2xl leading-relaxed">
           Formação técnica de elite reconhecida mundialmente pela PADI, SSI e TDI. Do primeiro fôlego às expedições abissais mais exigentes.
         </p>
-
-        {/* Uiverse Ascent Loader */}
-        <div className="mt-4 flex items-center gap-2">
-          <span className="text-[10px] font-mono text-neutral-400">FLUXO DE PRESSÃO O2:</span>
-          <div onMouseEnter={() => oceanAudio.playBubblePop()}>
-            <UivBubbleAscentLoader />
-          </div>
-        </div>
       </div>
 
       {/* Courses Cards Grid */}
@@ -92,13 +78,13 @@ export const CoursesSection: React.FC<CoursesSectionProps> = ({ onSelectCourse }
             onMouseEnter={() => oceanAudio.playBubblePop()}
             className={`relative rounded-3xl p-7 flex flex-col justify-between border backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 ${
               course.popular
-                ? "bg-[#04152e]/85 border-[#00f5d4] shadow-[0_0_35px_rgba(0,245,212,0.2)]"
+                ? "bg-[#04152e]/90 border-[#00f5d4] shadow-[0_0_35px_rgba(0,245,212,0.2)]"
                 : "bg-[#020b18]/70 border-white/10 hover:border-white/25"
             }`}
           >
             {course.popular && (
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-to-r from-[#00f5d4] to-[#3a86ff] text-[#020915] text-[10px] font-mono font-bold uppercase tracking-wider shadow-lg">
-                Recomendado para Iniciados
+                Recomendado
               </div>
             )}
 
@@ -120,7 +106,7 @@ export const CoursesSection: React.FC<CoursesSectionProps> = ({ onSelectCourse }
                 </div>
                 <div className="flex items-center gap-1">
                   <Compass className="w-3.5 h-3.5 text-[#e61c78]" />
-                  <span>Profundidade: {course.maxDepth}</span>
+                  <span>{course.maxDepth}</span>
                 </div>
               </div>
 
@@ -148,37 +134,13 @@ export const CoursesSection: React.FC<CoursesSectionProps> = ({ onSelectCourse }
                   oceanAudio.playBubblePop();
                   onSelectCourse(course.title);
                 }}
-                className="px-4 py-2 rounded-xl bg-white/10 hover:bg-[#00f5d4] hover:text-[#020915] text-xs font-mono font-semibold transition-all duration-200 border border-white/15"
+                className="px-4 py-2 rounded-xl bg-[#00f5d4] text-[#020915] font-mono text-xs font-bold uppercase hover:bg-[#70e000] transition-colors"
               >
                 Reservar Vaga
               </button>
             </div>
           </div>
         ))}
-      </div>
-
-      {/* Safety & Nitrox Protocol Bar */}
-      <div className="p-6 rounded-2xl bg-[#030e1d]/80 border border-white/15 backdrop-blur-md flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#00f5d4]/10 border border-[#00f5d4]/30 flex items-center justify-center text-[#00f5d4]">
-            <Award className="w-5 h-5" />
-          </div>
-          <div>
-            <h4 className="text-sm font-semibold text-white">Certificação Válida em 180+ Países</h4>
-            <p className="text-xs text-neutral-400">Emissão imediata de credencial digital no App oficial PADI / TDI.</p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <div onMouseEnter={() => oceanAudio.playBubblePop()}>
-            <UivNightDiveCheckbox />
-          </div>
-          <span className="text-xs font-mono text-neutral-300">Incluir Módulo de Mergulho Noturno</span>
-        </div>
-
-        <div onMouseEnter={() => oceanAudio.playBubblePop()}>
-          <UivSeahorseNavPill />
-        </div>
       </div>
     </section>
   );
