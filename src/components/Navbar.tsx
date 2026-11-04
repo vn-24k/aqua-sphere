@@ -1,5 +1,5 @@
 import React from "react";
-import { Volume2, VolumeX, Compass, Layers } from "lucide-react";
+import { Volume2, VolumeX, Compass } from "lucide-react";
 import { oceanAudio } from "../utils/ocean-audio";
 
 interface NavbarProps {
@@ -8,8 +8,6 @@ interface NavbarProps {
   onToggleDepthUnit: () => void;
   isAudioOn: boolean;
   onToggleAudio: () => void;
-  onToggleDrawer: () => void;
-  isDrawerOpen: boolean;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -18,8 +16,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   onToggleDepthUnit,
   isAudioOn,
   onToggleAudio,
-  onToggleDrawer,
-  isDrawerOpen,
 }) => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-5 transition-all duration-300">
@@ -116,19 +112,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <Compass className="w-3 h-3 text-[#00f5d4]" />
             <span>{depthUnit === "meters" ? "M" : "FT"}</span>
-          </button>
-
-          {/* Equipamentos & Instrumentação Técnica Drawer Button */}
-          <button
-            onClick={() => {
-              oceanAudio.playBubblePop();
-              onToggleDrawer();
-            }}
-            className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#00f5d4]/10 hover:bg-[#00f5d4]/20 border border-[#00f5d4]/40 text-[#00f5d4] text-[11px] font-mono transition-all"
-            title="Abrir painel de equipamentos e instrumentação técnica"
-          >
-            <Layers className="w-3.5 h-3.5" />
-            <span>EQUIPAMENTOS</span>
           </button>
 
           {/* Radiant Magenta Action Button */}

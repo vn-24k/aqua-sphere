@@ -9,7 +9,6 @@ import { LocationsSection } from "./components/LocationsSection";
 import { CoursesSection } from "./components/CoursesSection";
 import { Footer } from "./components/Footer";
 import { BookingModal } from "./components/BookingModal";
-import { UiverseDrawer } from "./components/UiverseDrawer";
 import { oceanAudio } from "./utils/ocean-audio";
 
 export default function App() {
@@ -17,7 +16,6 @@ export default function App() {
   const [selectedTopic, setSelectedTopic] = useState("Recifes de Coral do Mar Vermelho");
   const [depthUnit, setDepthUnit] = useState<"meters" | "feet">("meters");
   const [isAudioOn, setIsAudioOn] = useState(false);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleOpenBooking = (topicName?: string) => {
     if (topicName) setSelectedTopic(topicName);
@@ -51,8 +49,6 @@ export default function App() {
         onToggleDepthUnit={handleToggleDepthUnit}
         isAudioOn={isAudioOn}
         onToggleAudio={handleToggleAudio}
-        onToggleDrawer={() => setIsDrawerOpen(!isDrawerOpen)}
-        isDrawerOpen={isDrawerOpen}
       />
 
       {/* 5. Main Content Flow with Full-Width Rich Sections */}
@@ -78,12 +74,6 @@ export default function App() {
         isOpen={isBookingOpen}
         onClose={() => setIsBookingOpen(false)}
         initialTopic={selectedTopic}
-      />
-
-      {/* 8. Subsystems Drawer with 23 Scoped Uiverse Components */}
-      <UiverseDrawer
-        isOpen={isDrawerOpen}
-        onToggle={() => setIsDrawerOpen(!isDrawerOpen)}
       />
     </div>
   );
