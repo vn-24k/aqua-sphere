@@ -10,7 +10,7 @@
 * **Física de Cardume Dinâmico (*Marine Flocking*):** Motor de enxame marinho com peixes bioluminescentes que nadam em sincronia, desviam suavemente do mouse e mantêm coesão natural baseada no algoritmo de Boids.
 * **Telemetria de Profundidade em Tempo Real (HUD):** Painel lateral de computador de mergulho que computa dinamicamente profundidade (0m a 140m), atmosfera barométrica, queda de temperatura e camada batial conforme o scroll.
 * **Sintetizador Procedural Hidrofônico (Web Audio API):** Áudio ambiente autoral com ressonância abissal de baixa frequência (42Hz/84Hz), pings de sonar periódicos e micro-efeitos táteis de bolhas de ar nas interações.
-* **Arsenal de 23 Componentes Reais do Uiverse:** Botões com gradiente líquido, cartões de aura bioluminescente, switches táteis, checkboxes náuticos e inputs estilizados devidamente isolados com escopo CSS próprio.
+* **Arsenal de 23 Módulos de Engenharia e Instrumentação Subaquática:** Botões com gradiente líquido, cartões de aura bioluminescente, switches táteis, checkboxes náuticos e inputs estilizados devidamente isolados com escopo CSS próprio.
 * **Tipografia Editorial de Alto Contraste:** Harmonização monumental entre *Cinzel Decorative*, *Syne*, *Plus Jakarta Sans* e *JetBrains Mono*.
 
 ---
@@ -38,7 +38,7 @@ aqua-sphere/
 │   │   ├── WaterCausticsCanvas.tsx # Canvas de raios de sol e bolhas marinhas
 │   │   ├── BookingModal.tsx     # Modal de agendamento com celebração de confetes
 │   │   ├── Footer.tsx           # Bases operacionais, rádio VHF Canal 16 e diretrizes
-│   │   └── uiverse-collection.tsx # 23 componentes reais do acervo Uiverse integrados
+│   │   └── uiverse-collection.tsx # 23 componentes reais de instrumentação e controles integrados
 │   ├── utils/
 │   │   └── ocean-audio.ts       # Sintetizador hidrofônico em Web Audio nativo
 │   ├── App.tsx                  # Composição mestre da landing page

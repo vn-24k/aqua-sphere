@@ -1888,14 +1888,9 @@ export const UivAbyssalDepthCard: React.FC<UivAbyssalDepthCardProps> = ({ classN
 
       `}</style>
       <div className="aq_wrap_12" dangerouslySetInnerHTML={{ __html: `<div className="card">
-  <img
-    className="image"
-    alt=""
-    src="https://uiverse.io/build/_assets/astronaut-WTFWARES.png"
-  />
-  <div className="heading">We're on Social Media</div>
+  <div className="heading">Redes de Expedição & Comunidade</div>
   <div className="icons">
-    <a className="instagram" href="https://www.instagram.com/uiverse.io/">
+    <a className="instagram" href="#contato">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -1912,7 +1907,7 @@ export const UivAbyssalDepthCard: React.FC<UivAbyssalDepthCardProps> = ({ classN
         ></path>
       </svg>
     </a>
-    <a className="x" href="https://twitter.com/uiverse_io">
+    <a className="x" href="#contato">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

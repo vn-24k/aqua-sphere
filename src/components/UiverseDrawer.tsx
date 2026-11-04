@@ -34,7 +34,7 @@ interface UiverseDrawerProps {
 
 export const UiverseDrawer: React.FC<UiverseDrawerProps> = ({ isOpen, onToggle }) => {
   return (
-    <aside aria-label="Painel de Módulos Uiverse" className="fixed bottom-0 left-0 right-0 z-40 flex flex-col items-center pointer-events-none">
+    <aside aria-label="Painel de Instrumentação e Equipamentos" className="fixed bottom-0 left-0 right-0 z-40 flex flex-col items-center pointer-events-none">
       {/* Floating Toggle Pill */}
       <button
         onClick={() => {
@@ -44,7 +44,7 @@ export const UiverseDrawer: React.FC<UiverseDrawerProps> = ({ isOpen, onToggle }
         className="pointer-events-auto mb-3 px-5 py-2 rounded-full bg-[#030e1d]/90 hover:bg-[#061833] border border-[#00f5d4]/40 text-[#00f5d4] hover:text-white text-xs font-mono font-medium shadow-[0_0_25px_rgba(0,245,212,0.25)] backdrop-blur-xl flex items-center gap-2.5 transition-all duration-300 hover:scale-105 active:scale-95"
       >
         <Layers className="w-3.5 h-3.5 text-[#00f5d4] animate-pulse" />
-        <span>23 COMPONENTES UIVERSE GALAXY HOMOLOGADOS</span>
+        <span>CENTRAL DE INSTRUMENTAÇÃO & EQUIPAMENTOS TÉCNICOS</span>
         {isOpen ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronUp className="w-3.5 h-3.5" />}
       </button>
 
@@ -58,10 +58,10 @@ export const UiverseDrawer: React.FC<UiverseDrawerProps> = ({ isOpen, onToggle }
               </div>
               <div>
                 <h3 className="text-lg font-display font-bold text-white">
-                  Arsenal de Engenharia Subaquática (23 Módulos Uiverse)
+                  Arsenal de Instrumentação & Suporte Vital Subaquático
                 </h3>
                 <p className="text-xs font-mono text-neutral-400">
-                  Cota obrigatória integrada com isolamento estrito de CSS (Zero conflitos de layout)
+                  Controladores hiperbáricos, sensores de telemetria e válvulas calibradas sob protocolo DAN / TDI
                 </p>
               </div>
             </div>
@@ -78,7 +78,7 @@ export const UiverseDrawer: React.FC<UiverseDrawerProps> = ({ isOpen, onToggle }
             {/* Category: Buttons */}
             <div className="p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col gap-4">
               <span className="text-[11px] font-mono uppercase tracking-wider text-[#00f5d4]">
-                1. Botões & Controles Táteis
+                1. Controles & Válvulas Táteis
               </span>
               <div className="space-y-4 flex flex-col items-center">
                 <div onMouseEnter={() => oceanAudio.playBubblePop()} title="BurgiSimon_wonderful-seahorse-35">
@@ -105,7 +105,7 @@ export const UiverseDrawer: React.FC<UiverseDrawerProps> = ({ isOpen, onToggle }
             {/* Category: Switches & Loaders */}
             <div className="p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col gap-4">
               <span className="text-[11px] font-mono uppercase tracking-wider text-[#3a86ff]">
-                2. Switches, Toggles & Loaders
+                2. Sensores, Lanternas & Telemetria
               </span>
               <div className="space-y-5 flex flex-col items-center">
                 <div className="flex items-center gap-3">
@@ -138,7 +138,7 @@ export const UiverseDrawer: React.FC<UiverseDrawerProps> = ({ isOpen, onToggle }
             {/* Category: Inputs & Checkboxes & Cards */}
             <div className="p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col gap-4">
               <span className="text-[11px] font-mono uppercase tracking-wider text-[#e61c78]">
-                3. Inputs, Checkboxes & Cards
+                3. Credenciamento, Checklists & Dossiers
               </span>
               <div className="space-y-4">
                 <div>

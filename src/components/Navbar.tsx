@@ -118,17 +118,17 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span>{depthUnit === "meters" ? "M" : "FT"}</span>
           </button>
 
-          {/* 23 Uiverse Button */}
+          {/* Equipamentos & Instrumentação Técnica Drawer Button */}
           <button
             onClick={() => {
               oceanAudio.playBubblePop();
               onToggleDrawer();
             }}
             className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#00f5d4]/10 hover:bg-[#00f5d4]/20 border border-[#00f5d4]/40 text-[#00f5d4] text-[11px] font-mono transition-all"
-            title="Abrir painel de 23 componentes Uiverse"
+            title="Abrir painel de equipamentos e instrumentação técnica"
           >
             <Layers className="w-3.5 h-3.5" />
-            <span>23 UIVERSE</span>
+            <span>EQUIPAMENTOS</span>
           </button>
 
           {/* Radiant Magenta Action Button */}
